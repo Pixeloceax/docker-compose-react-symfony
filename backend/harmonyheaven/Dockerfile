@@ -16,7 +16,6 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install zip
 
-
 # Activez le module Apache mod_rewrite
 RUN a2enmod rewrite
 
@@ -30,9 +29,9 @@ WORKDIR /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --no-scripts --no-autoloader
 
-# Installez Symfony CLI
+# Symfony CLI
 RUN wget https://get.symfony.com/cli/installer -O - | bash
-RUN export PATH="$HOME/.symfony5/bin:$PATH"
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 # Générez les fichiers d'autoloading et les assets
 RUN composer dump-autoload --optimize
