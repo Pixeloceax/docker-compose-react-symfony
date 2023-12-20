@@ -1,20 +1,19 @@
-# Utilisez une image de base contenant Node.js et npm
+# Use a base image containing Node.js and npm
 FROM node:21
-# Définissez le répertoire de travail dans le conteneur
+# Set the working directory in the container
 WORKDIR /app
 
-# Copiez le package.json et le package-lock.json dans le conteneur
+# Copy the package.json and package-lock.json into the container
 COPY package*.json ./
 
-# Installez les dépendances
+# Install dependencies
 RUN npm install
 
-# Copiez le reste des fichiers de l'application dans le conteneur
+# Copy the rest of the application files into the container
 COPY . .
 
-
-# Exposez le port sur lequel l'application écoute
+# Expose the port on which the application listens
 EXPOSE 3000
 
-# Démarrez l'application React
+# Start the React application
 CMD ["npm", "start"]
