@@ -48,4 +48,20 @@ Symfony backend source code is located in the backend/ directory.
 
 Database connection information for MySQL can be configured in the .env file. You can use a database management tool such as phpMyAdmin by accessing http://localhost:8080 (default credentials in the .env file).
 
+## Adminer
+
+Adminer is a web-based database management tool. It allows you to easily manage your databases visually. You can access it at http://localhost:8080 (default credentials in the docker compose file).
+
+![Adminer Default Login](adminer_default_mysql_login.png)
+
+|          |                                                             |
+| -------- | ----------------------------------------------------------- |
+| System   | _YOUR DATABASE_                                             |
+| Server   | _YOUR DOCKER IMAGE_                                         |
+| Username | _YOUR DATABASE USER (DEFAULT ROOT)_                         |
+| Password | _YOUR DATABASE PASSWORD (DEFAULT 123456)_                   |
+| Database | _YOUR WORKING DATABASE (LEAVE EMPTY IF YOU DON'T HAVE ONE)_ |
+
+##
+
 Feel free to customize this README based on your project's specifics and the information you want to provide to the repository users.
