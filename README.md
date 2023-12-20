@@ -15,7 +15,7 @@ Make sure you have Docker and Docker Compose installed on your machine. You can 
    cd docker-compose-react-symfony
    ```
 
-2. Create a `.env` file at the root of the project and configure the necessary environment variables. You can use the `.env.example` file as a reference.
+2. Create a `.env` file at the root of the project and configure the necessary environment variables.
 
 3. Build Docker images and launch containers:
 
