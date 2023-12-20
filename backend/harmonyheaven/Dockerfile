@@ -1,7 +1,7 @@
-# Utilisez une image de base avec PHP et Apache
+# Use a base image with PHP and Apache
 FROM php:8.2-apache
 
-# Installez les dépendances nécessaires pour Symfony
+# Install the necessary dependencies for Symfony
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     libpq-dev \
@@ -11,21 +11,21 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl
 
-# Installez les extensions PHP nécessaires pour Symfony
+# Install the necessary PHP extensions for Symfony
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install zip
 
-# Activez le module Apache mod_rewrite
+# Enable the Apache mod_rewrite module
 RUN a2enmod rewrite
 
-# Copiez les fichiers de l'application dans le conteneur
+# Copy the application files into the container
 COPY . /var/www/html
 
-# Définissez le répertoire de travail
+# Set the working directory
 WORKDIR /var/www/html
 
-# Installez les dépendances du projet Symfony
+# Install the Symfony project dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --no-scripts --no-autoloader
 
@@ -33,11 +33,12 @@ RUN composer install --no-scripts --no-autoloader
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-# Générez les fichiers d'autoloading et les assets
+# Generate autoloading files and assets
 RUN composer dump-autoload --optimize
 RUN php bin/console assets:install --symlink
 
-# Exposez le port 80 pour accéder à l'application
-EXPOSE 80
+CMD symfony server:start --no-tls
+############################################## PRODUCTION SETTINGS ##############################################
+# EXPOSE 80
 
-CMD ["sh", "-c", "apache2-foreground"]
+# CMD ["sh", "-c", "apache2-foreground"]
