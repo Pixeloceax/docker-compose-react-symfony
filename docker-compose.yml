@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/harmonyheaven
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - harmony_network
+
+  backend:
+    build:
+      context: ./backend/harmonyheaven
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=dev
+      - APP_DEBUG=1
+      - DATABASE_URL=mysql://root:123456@mysql:3307/harmonyheaven
+    depends_on:
+      - mysql
+    networks:
+      - harmony_network
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+networks:
+  harmony_network:
