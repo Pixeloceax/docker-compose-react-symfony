@@ -57,7 +57,7 @@ Adminer is a web-based database management tool. It allows you to easily manage 
 |          |                                                             |
 | -------- | ----------------------------------------------------------- |
 | System   | _YOUR DATABASE_                                             |
-| Server   | _YOUR DOCKER IMAGE_                                         |
+| Server   | _YOUR DOCKER SERVICE_                                       |
 | Username | _YOUR DATABASE USER (DEFAULT ROOT)_                         |
 | Password | _YOUR DATABASE PASSWORD (DEFAULT 123456)_                   |
 | Database | _YOUR WORKING DATABASE (LEAVE EMPTY IF YOU DON'T HAVE ONE)_ |
