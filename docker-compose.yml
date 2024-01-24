@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    networks:
-      - harmony_network
 
   backend:
     build:
@@ -19,24 +17,25 @@ services:
     environment:
       - APP_ENV=dev
       - APP_DEBUG=1
-      - DATABASE_URL=mysql://root:123456@mysql:3307/harmonyheaven
+      - DATABASE_URL=mysql://symfony_user:symfony_password@database:3306/symfony_db
     depends_on:
-      - mysql
-    networks:
-      - harmony_network
-
-  mysql:
+      - database
+   
+  database:
     image: mysql:latest
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-
+      MYSQL_DATABASE: symfony_db
+      MYSQL_USER: symfony_user
+      MYSQL_PASSWORD: symfony_password
+    ports:
+      - "3306"
 
   adminer:
-    image: adminer
+    image: adminer:latest
     restart: always
     ports:
       - 8080:8080
 
-networks:
-  harmony_network:
+volumes:
+  db-data:
