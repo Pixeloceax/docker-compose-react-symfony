@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
 
 # Install the necessary PHP extensions for Symfony
 RUN docker-php-ext-install intl
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install zip
 
@@ -38,7 +40,3 @@ RUN composer dump-autoload --optimize
 RUN php bin/console assets:install --symlink
 
 CMD symfony server:start --no-tls
-############################################## PRODUCTION SETTINGS ##############################################
-# EXPOSE 80
-
-# CMD ["sh", "-c", "apache2-foreground"]
